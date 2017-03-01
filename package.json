@@ -1,0 +1,26 @@
+{
+  "name": "fixate-feathers-hooks",
+  "version": "1.0.0",
+  "description": "Shared Hooks for edugame",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/fixate-edugame/shared-models.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/fixate-edugame/shared-models#readme",
+  "peerDependencies": {
+    "feathers": ">=2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "deep-assign": "^2.0.0",
+    "feathers-errors": ">=2",
+    "lodash": "^4.16.4",
+    "string": "^3.3.1"
+  }
+}
