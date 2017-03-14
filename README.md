@@ -28,7 +28,8 @@ Specify default query params or results. You can also use a function which
 returns a calculated default.
 
 ```javascript
-defaults({ q: 'foo', complex(hook) { return hook.data.anotherField } }, { deep: true })(hook);
+defaults({ q: 'foo', complex(hook) { return hook.params.anotherField } }, { deep: true })(hook);
+// (before hook) params = { q: 'bar', anotherField: 'test123' } then params.query will have { q:'bar', complex: 'test123' }
 ```
 
 ### optionalHashPassword
