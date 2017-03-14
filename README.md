@@ -15,6 +15,7 @@ Dependencies:
 - feathers-hooks (removeSensitiveFields)
 
 Install: `npm install --save fixate-feathers-hooks`
+
 Include:
 `const defaults = require('fixate-feathers-hooks/defaults')` or
 `const { defaults } = require('fixate-feathers-hooks');`
