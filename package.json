@@ -1,18 +1,18 @@
 {
   "name": "fixate-feathers-hooks",
   "version": "1.0.0",
-  "description": "Shared Hooks for edugame",
+  "description": "Some common hooks we use in projects",
   "main": "index.js",
   "scripts": {
     "test": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/fixate-edugame/shared-models.git"
+    "url": "https://github.com/fixate/fixate-feathers-hooks.git"
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/fixate-edugame/shared-models#readme",
+  "homepage": "https://github.com/fixate/fixate-feathers-hooks#readme",
   "peerDependencies": {
     "feathers": ">=2"
   },
