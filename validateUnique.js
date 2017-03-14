@@ -2,11 +2,11 @@ const errors = require('feathers-errors');
 
 const defaultOptions = {
   field: 'username',
-  userEndpoint: '/users',
+  userService: '/users',
 };
 
 module.exports = function validateUnique(options) {
-  const { field, userEndpoint } = Object.assign(defaultOptions, options);
+  const { field, userService } = Object.assign(defaultOptions, options);
 
   return hook => {
     if (hook.type !== 'before') {
@@ -22,7 +22,7 @@ module.exports = function validateUnique(options) {
         // Exclulde the record we are checking against
         query._id = { $ne: recordId };
       }
-      return hook.app.service(userEndpoint)
+      return hook.app.service(userService)
         .find({ query, $limit: 1 })
         .then(users => {
           if (users.length === 0) {
