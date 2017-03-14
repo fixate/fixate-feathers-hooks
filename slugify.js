@@ -7,7 +7,7 @@ module.exports = function slugify(field, slugFields, overwrite = false) {
     }
 
     if (overwrite || !hook.data[field]) {
-      hook.data[field] = S(slugFields.map((f) => hook.data[f]).join('')).slugify().s;
+      hook.data[field] = S(slugFields.map((f) => hook.data[f]).join('-')).slugify().s;
     }
   };
 };
