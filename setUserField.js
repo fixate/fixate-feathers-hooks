@@ -6,8 +6,8 @@ const defaultOptions = {
   overwrite: true,
 };
 
-module.exports = function setUserField(options) {
-  const opts = Object.assign({}, defaultOptions, options);
+module.exports = function setUserField(opts) {
+  const options = Object.assign({}, defaultOptions, opts);
   return (hook) => {
     if (hook.type === 'after') {
       throw new errors.GeneralError(
