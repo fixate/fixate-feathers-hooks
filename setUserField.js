@@ -7,7 +7,7 @@ const defaultOptions = {
 };
 
 module.exports = function setUserField(options) {
-  const opts = Object.assign(defaultOptions, options);
+  const opts = Object.assign({}, defaultOptions, options);
   return (hook) => {
     if (hook.type === 'after') {
       throw new errors.GeneralError(

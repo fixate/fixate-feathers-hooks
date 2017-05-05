@@ -6,7 +6,7 @@ const defaultOptions = {
 };
 
 module.exports = function validateUnique(options) {
-  const { field, userService } = Object.assign(defaultOptions, options);
+  const { field, userService } = Object.assign({}, defaultOptions, options);
 
   return hook => {
     if (hook.type !== 'before') {
