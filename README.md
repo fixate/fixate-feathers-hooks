@@ -52,6 +52,8 @@ permitFields('public.object', 'private.item.name')(hook);
 Configure fields which should be removed from api responses.
 Configure `sensitiveFields` in your `default.json` (uses `app.get` and `feathers-hooks.remove` hook).
 
+`>= 1.0.4` - Will throw an error if you use this hook without a configuration for the "model". This is to prevent typos causing data to leak.
+
 ```javascript
 removeSensitiveFields('user')(hook);
 
