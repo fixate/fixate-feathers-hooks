@@ -15,11 +15,6 @@ module.exports = function requiredParams(...fields) {
   }
 
   return function handler(hook) {
-    // If it was an internal call then skip this hook
-    if (!hook.params.provider) {
-      return hook;
-    }
-
     if (hook.type !== 'before') {
       throw new errors.GeneralError('requiredParams is a before hook.');
     }
