@@ -10,7 +10,7 @@ function getRequestData(hook) {
 		case 'get':
 			return hook.params;
 		case 'find':
-			return hook.params.query,
+			return hook.params.query;
 		case 'create':
 		case 'update':
 		case 'patch':
