@@ -5,6 +5,23 @@ const defaultOptions = {
   Error: errors.BadRequest,
 };
 
+function getRequestData(hook) {
+	switch (hook.method) {
+		case 'get':
+			return hook.params;
+		case 'find':
+			return hook.params.query,
+		case 'create':
+		case 'update':
+		case 'patch':
+			return hook.data;
+		case 'remove':
+			return hook.params;
+		default:
+			return {};
+	}
+}
+
 module.exports = function requiredParams(...fields) {
   const opts = (typeof fields[fields.length - 1] === 'object') ?
     fields.pop() : {};
@@ -19,7 +36,7 @@ module.exports = function requiredParams(...fields) {
       throw new errors.GeneralError('requiredParams is a before hook.');
     }
 
-    const requestData = Object.assign({}, hook.data, hook.params.query);
+    const requestData = getRequestData(hook);
     const missingFields = fields.filter(f => (typeof get(f, requestData) === 'undefined'))
     if (missingFields.length > 0) {
       const message = missingFields.length === 1 ?
