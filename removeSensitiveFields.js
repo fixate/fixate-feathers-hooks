@@ -1,5 +1,5 @@
 const errors = require('feathers-errors');
-const { remove } = require('feathers-hooks');
+const {iff, isProvider, discard} = require('feathers-hooks-common');
 
 module.exports = function removeSensitiveFields(modelName) {
   return function handler(hook) {
@@ -20,6 +20,7 @@ module.exports = function removeSensitiveFields(modelName) {
     }
 
     const fields = config[modelName];
-    return remove(...fields)(hook);
+    const removeFields = iff(isProvider('external'), discard(...fields));
+    return removeFields(hook);
   };
 };
