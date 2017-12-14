@@ -1,5 +1,7 @@
 # fixate-feathers-hooks
 
+### These are largely deprecated by the latest feathers-hooks-common 
+
 A mixed bag of feathers hooks that are useful in almost all projects.
 
 They all curry the hook function, so the 'outer' call is used for configuration and returns a

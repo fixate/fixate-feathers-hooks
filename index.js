@@ -3,7 +3,7 @@ const setUserField = require('./setUserField');
 const optionalHashPassword = require('./optionalHashPassword');
 const slugify = require('./slugify');
 const scopeQueryTo = require('./scopeQueryTo');
-const removeSensitiveFields = require('./removeSensitiveFields');
+const permittedFields = require('./permittedFields');
 const permitFields = require('./permitFields');
 const validateUnique = require('./validateUnique');
 const requiredParams = require('./requiredParams');
@@ -15,7 +15,7 @@ module.exports = {
   optionalHashPassword,
   slugify,
   scopeQueryTo,
-  removeSensitiveFields,
+  permittedFields,
   permitFields,
   validateUnique,
   requiredParams,
