@@ -1,6 +1,6 @@
 {
   "name": "fixate-feathers-hooks",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Some common hooks we use in projects",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,9 @@
   "license": "ISC",
   "homepage": "https://github.com/fixate/fixate-feathers-hooks#readme",
   "peerDependencies": {
-    "feathers": ">=2",
+    "@feathersjs/feathers": ">=2",
     "feathers-hooks-common": ">=3",
-		"feathers-errors": "*"
+    "@feathersjs/errors": "*"
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",
