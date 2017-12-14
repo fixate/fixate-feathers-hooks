@@ -1,5 +1,5 @@
 const errors = require('feathers-errors');
-const {iff, isProvider, discard} = require('feathers-hooks-common');
+const {iff, isProvider, keep} = require('feathers-hooks-common');
 
 module.exports = function removeSensitiveFields(modelName) {
   return function handler(hook) {
@@ -7,20 +7,19 @@ module.exports = function removeSensitiveFields(modelName) {
     if (!hook.params.provider) {
       return hook;
     }
-    const config = hook.app.get('sensitiveFields');
+    const config = hook.app.get('permittedFields');
 
     if (!config) {
       throw new errors.GeneralError('Sensitive Fields configuration not found!');
     }
 
-    if (!config[modelName]) {
-      throw new errors.GeneralError(
-        `Sensitive field model name '${modelName}' has not been configured.`
-      );
+    const model = config[modelName];
+
+    if (!model) {
+      throw new errors.GeneralError(`Permitted fields not configured for '${modelName}'`);
     }
 
-    const fields = config[modelName];
-    const removeFields = iff(isProvider('external'), discard(...fields));
+    const removeFields = iff(isProvider('external'), keep(...model));
     return removeFields(hook);
   };
 };
