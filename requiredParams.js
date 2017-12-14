@@ -37,7 +37,7 @@ module.exports = function requiredParams(...fields) {
     }
 
     const requestData = getRequestData(hook);
-    const missingFields = fields.filter(emptyPredicate(requestData));
+    const missingFields = fields.filter(options.emptyPredicate(requestData));
     if (missingFields.length > 0) {
       const message =
         missingFields.length === 1
