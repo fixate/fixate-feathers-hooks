@@ -41,8 +41,8 @@ module.exports = function requiredParams(...fields) {
     if (missingFields.length > 0) {
       const message =
         missingFields.length === 1
-          ? `Required field ${fields[0]} is missing.`
-          : `Required fields ${fields.join(', ')} are missing.`;
+          ? `Required field ${missingFields[0]} is missing.`
+          : `Required fields ${missingFields.join(', ')} are missing.`;
       throw new options.Error(message);
     }
 
