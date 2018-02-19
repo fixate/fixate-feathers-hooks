@@ -1,6 +1,6 @@
 {
   "name": "fixate-feathers-hooks",
-  "version": "2.1.4",
+  "version": "2.1.7",
   "description": "Some common hooks we use in projects",
   "main": "index.js",
   "scripts": {
