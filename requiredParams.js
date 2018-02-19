@@ -37,15 +37,30 @@ module.exports = function requiredParams(...fields) {
     }
 
     const requestData = getRequestData(hook);
-    const missingFields = fields.filter(options.emptyPredicate(requestData));
-    if (missingFields.length > 0) {
-      const message =
-        missingFields.length === 1
-          ? `Required field ${missingFields[0]} is missing.`
-          : `Required fields ${missingFields.join(', ')} are missing.`;
-      throw new options.Error(message);
+    if (Array.isArray(requestData)) {
+      requestData.forEach(d => checkFields(fields, d));
+    } else {
+      checkFields(fields, requestData);
     }
 
     return hook;
   };
 };
+
+module.exports.falsyEmptyPredicate = data => f => !get(f, data);
+// Falsy but the number zero is counted as a given value
+module.exports.blankEmptyPredicate = data => f => {
+  const value = get(f, data);
+  return value !== 0 && !value;
+};
+
+function checkFields(fields, data) {
+  const missingFields = fields.filter(options.emptyPredicate(data));
+  if (missingFields.length > 0) {
+    const message =
+      missingFields.length === 1
+        ? `Required field ${missingFields[0]} is missing.`
+        : `Required fields ${missingFields.join(', ')} are missing.`;
+    throw new options.Error(message);
+  }
+}
