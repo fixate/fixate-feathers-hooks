@@ -1,12 +1,12 @@
-const errors = require('feathers-errors');
 const bcrypt = require('bcryptjs');
 
-const defaults = { passwordField: 'password' };
+const defaults = {passwordField: 'password'};
 
 module.exports = function optionalHashPassword(options = {}) {
-  return function (hook) {
+  return function(hook) {
     if (hook.type !== 'before') {
-      throw new Error(`The 'hashPassword' hook should only be used as a 'before' hook.`);
+      /* eslint-disable-next-line quotes */
+      throw new Error("The 'hashPassword' hook should only be used as a 'before' hook.");
     }
 
     options = Object.assign({}, defaults, hook.app.get('auth'), options);
@@ -21,9 +21,7 @@ module.exports = function optionalHashPassword(options = {}) {
     if (Array.isArray(hook.data)) {
       // make sure we actually have password fields
       const dataToCheck = [].concat(hook.data);
-      dataToCheck.filter(item => {
-        return item.hasOwnProperty(options.passwordField);
-      });
+      dataToCheck.filter(item => item.hasOwnProperty(options.passwordField));
       if (dataToCheck.length > 0) {
         // set it to the array so we can iterate later on it
         password = hook.data;
@@ -37,9 +35,9 @@ module.exports = function optionalHashPassword(options = {}) {
       return hook;
     }
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       const hash = function(item, password, salt) {
-        crypto.hash(password, salt, function (error, hash) {
+        crypto.hash(password, salt, function(error, hash) {
           if (error) {
             return reject(error);
           }
@@ -47,9 +45,9 @@ module.exports = function optionalHashPassword(options = {}) {
           resolve(hook);
         });
       };
-      crypto.genSalt(10, function (error, salt) {
+      crypto.genSalt(10, function(error, salt) {
         if (Array.isArray(password)) {
-          password.map((item) => {
+          password.map(item => {
             if (!item.hasOwnProperty(options.passwordField)) {
               return false;
             }
@@ -61,4 +59,4 @@ module.exports = function optionalHashPassword(options = {}) {
       });
     });
   };
-}
+};

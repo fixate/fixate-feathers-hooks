@@ -4,7 +4,8 @@
   "description": "Some common hooks we use in projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'Damn! no tests :('"
+    "test": "echo 'Damn! no tests :('",
+    "lint": "eslint ./ --config .eslintrc.json"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
     "deep-assign": "^2.0.0",
     "lodash": "^4.16.4",
     "string": "^3.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.0"
   }
 }
