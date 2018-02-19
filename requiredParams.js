@@ -38,9 +38,9 @@ module.exports = function requiredParams(...fields) {
 
     const requestData = getRequestData(hook);
     if (Array.isArray(requestData)) {
-      requestData.forEach(d => checkFields(fields, d));
+      requestData.forEach(d => checkFields(fields, d, options));
     } else {
-      checkFields(fields, requestData);
+      checkFields(fields, requestData, options);
     }
 
     return hook;
@@ -54,7 +54,7 @@ module.exports.blankEmptyPredicate = data => f => {
   return value !== 0 && !value;
 };
 
-function checkFields(fields, data) {
+function checkFields(fields, data, options) {
   const missingFields = fields.filter(options.emptyPredicate(data));
   if (missingFields.length > 0) {
     const message =
