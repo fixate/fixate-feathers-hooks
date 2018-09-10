@@ -1,4 +1,4 @@
-const errors = require('feathers-errors');
+const errors = require('@feathersjs/errors');
 const get = require('lodash/fp/get');
 
 const defaultOptions = {
@@ -8,19 +8,17 @@ const defaultOptions = {
 
 module.exports = function setUserField(opts) {
   const options = Object.assign({}, defaultOptions, opts);
-  return (hook) => {
+  return hook => {
     if (hook.type === 'after') {
-      throw new errors.GeneralError(
-        'setUserField must be used in a before hook'
-      );
+      throw new errors.GeneralError('setUserField must be used in a before hook');
     }
 
-    const { user } = hook.params;
+    const {user} = hook.params;
     if (!user) {
       throw new errors.GeneralError('setUserField hook should be used after populateUser hook.');
     }
 
-    const { field, userField, overwrite } = options;
+    const {field, userField, overwrite} = options;
 
     if (overwrite || !hook.data[field]) {
       hook.data[field] = get(userField, user);

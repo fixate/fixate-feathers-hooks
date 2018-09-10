@@ -1,4 +1,4 @@
-const errors = require('feathers-errors');
+const errors = require('@feathersjs/errors');
 const {iff, isProvider, keep} = require('feathers-hooks-common');
 
 module.exports = function removeSensitiveFields(modelName) {
